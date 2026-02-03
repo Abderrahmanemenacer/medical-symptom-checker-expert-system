@@ -1,0 +1,92 @@
+[
+  {
+    "rule_id": "R01",
+    "conditions": ["runny_nose", "congestion", "throat_irritation"],
+    "conclusion": "Common Cold",
+    "precautions": "Drink vitamin C; steam inhalation; rest"
+  },
+  {
+    "rule_id": "R02",
+    "conditions": ["continuous_sneezing", "watering_from_eyes", "red_eyes"],
+    "conclusion": "Allergy",
+    "precautions": "Avoid allergens; take antihistamines; use eye drops"
+  },
+  {
+    "rule_id": "R03",
+    "conditions": ["Allergy", "breathlessness", "wheezing"],
+    "conclusion": "Asthmatic Allergic Reaction",
+    "precautions": "Use inhaler; sit upright; seek medical help if severe"
+  },
+  {
+    "rule_id": "R04",
+    "conditions": ["Common Cold", "high_fever", "chest_pain", "rusty_sputum"],
+    "conclusion": "Pneumonia",
+    "precautions": "Consult doctor immediately; antibiotics; chest X-ray"
+  },
+  {
+    "rule_id": "R05",
+    "conditions": ["high_fever", "chills", "sweating", "vomiting"],
+    "conclusion": "Malaria",
+    "precautions": "Anti-malarial medication; use mosquito nets; hydration"
+  },
+  {
+    "rule_id": "R06",
+    "conditions": ["pain_behind_eyes", "joint_pain", "skin_rash"],
+    "conclusion": "Dengue",
+    "precautions": "Hydration; papaya leaf juice; monitor platelets"
+  },
+  {
+    "rule_id": "R07",
+    "conditions": ["high_fever", "abdominal_pain", "constipation"],
+    "conclusion": "Typhoid",
+    "precautions": "Antibiotics; boiled water; hygienic food"
+  },
+  {
+    "rule_id": "R08",
+    "conditions": ["headache", "stiff_neck", "blurred_vision"],
+    "conclusion": "Migraine",
+    "precautions": "Dark room; rest; pain relievers; avoid triggers"
+  },
+  {
+    "rule_id": "R09",
+    "conditions": ["acidity", "stomach_pain", "vomiting_after_eating"],
+    "conclusion": "GERD",
+    "precautions": "Avoid spicy food; don't lie down after meals; antacids"
+  },
+  {
+    "rule_id": "R10",
+    "conditions": ["burning_micturition", "frequent_urination"],
+    "conclusion": "Urinary Tract Infection",
+    "precautions": "Drink plenty of water; cranberry juice; antibiotics"
+  },
+  {
+    "rule_id": "R11",
+    "conditions": ["itching", "skin_rash", "red_spots"],
+    "conclusion": "Chicken Pox",
+    "precautions": "Isolation; neem bath; anti-itch lotion"
+  },
+  {
+    "rule_id": "R12",
+    "conditions": ["blood_in_sputum", "weight_loss", "night_sweats"],
+    "conclusion": "Tuberculosis",
+    "precautions": "Consult doctor; complete antibiotic course; mask"
+  },
+  {
+    "rule_id": "R13",
+    "conditions": ["chest_pressure", "shortness_of_breath", "arm_pain"],
+    "conclusion": "Heart Attack Warning",
+    "precautions": "Call emergency; aspirin; keep calm"
+  },
+  {
+    "rule_id": "R14",
+    "conditions": ["Heart Attack Warning", "unconsciousness"],
+    "conclusion": "Critical Cardiac Event",
+    "precautions": "CPR immediately; use AED if available"
+  },
+  {
+    "rule_id": "R15",
+    "conditions": ["itching", "ring_shaped_rash"],
+    "conclusion": "Fungal Infection",
+    "precautions": "Antifungal cream; keep dry; hygiene"
+  }
+]

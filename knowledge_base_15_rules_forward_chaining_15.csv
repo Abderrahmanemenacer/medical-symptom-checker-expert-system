@@ -1,0 +1,16 @@
+rule_id,conditions,conclusion,precautions
+R01,runny_nose;congestion;throat_irritation;phlegm,Common Cold,drink vitamin c rich drinks; take vapour; avoid cold food; keep fever in check
+R02,continuous_sneezing;watering_from_eyes;chills,Allergy,apply calamine; cover area with bandage; use ice to compress itching
+R03,high_fever;chills;sweating;vomiting,Malaria,Consult nearest hospital; avoid oily food; avoid non veg food; keep mosquitos out
+R04,pain_behind_the_eyes;joint_pain;skin_rash;nausea,Dengue,drink papaya leaf juice; avoid fatty spicy food; keep mosquitos away; keep hydrated
+R05,high_fever;abdominal_pain;constipation;fatigue,Typhoid,eat high calorie vegitables; antiboitic therapy; consult doctor; medication
+R06,cough;chest_pain;rusty_sputum;breathlessness,Pneumonia,consult doctor; medication; rest; follow up
+R07,emergency,seek_emergency_care,Go to the emergency department / call emergency services now. This rule fires after another rule asserts the fact 'emergency'.
+R08,Heart attack,emergency,Call emergency services immediately; do not wait; sit/rest; do not drive yourself; follow local emergency instructions
+R09,headache;stiff_neck;blurred_and_distorted_vision,Migraine,meditation; reduce stress; use poloroid glasses in sun; consult doctor
+R10,acidity;stomach_pain;vomiting;cough,GERD,avoid fatty spicy food; avoid lying down after eating; maintain healthy weight; exercise
+R11,burning_micturition;continuous_feel_of_urine;bladder_discomfort,Urinary tract infection,drink plenty of water; increase vitamin c intake; drink cranberry juice; take probiotics
+R12,itching;skin_rash;high_fever;red_spots_over_body,Chicken pox,use neem in bathing; consume neem leaves; take vaccine; avoid public places
+R13,blood_in_sputum;chest_pain;phlegm;mild_fever,Tuberculosis,cover mouth; consult doctor; medication; rest
+R14,chest_pain;breathlessness;sweating,Heart attack,call ambulance; chew or swallow asprin; keep calm
+R15,itching;skin_rash;nodal_skin_eruptions;dischromic_patches,Fungal infection,bath twice; use detol or neem in bathing water; keep infected area dry; use clean cloths
