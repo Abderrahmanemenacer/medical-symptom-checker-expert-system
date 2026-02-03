@@ -22,9 +22,7 @@ class ExpertSystem:
 
     def load_rules(self, file_path):
         ext = os.path.splitext(file_path)[1].lower()
-        if ext == '.json':
-            self._load_json(file_path)
-        elif ext == '.csv':
+        if ext == '.csv':
             self._load_csv(file_path)
         else:
             raise ValueError(f"Unsupported file format: {ext}")
