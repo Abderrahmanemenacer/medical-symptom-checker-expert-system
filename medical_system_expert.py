@@ -269,23 +269,70 @@ class ArtificialDoctorApp(QMainWindow):
         fired_rules, known_facts = self.system.forward_chaining(selected)
         
         if not fired_rules:
-            self.result_area.append("Result: No specific disease identified based on current rules.")
-            self.result_area.append("\nNote: Please consult a real doctor. This is an AI simulation.")
-            return
-
-        for rule in fired_rules:
-            html = f"""
-            <div style="background-color: #e8f8f5; padding: 10px; margin: 5px; border-radius: 5px; border-left: 5px solid #1abc9c;">
-                <h3 style="color: #16a085;">Start Rule {rule.rule_id} -> {rule.conclusion}</h3>
-                <p><b>Conditions Met:</b> {', '.join(rule.conditions)}</p>
-                <p><b>Recommendation:</b> {rule.precautions}</p>
+            no_result_html = """
+            <div style="background-color: #ffebee; border: 1px solid #ef9a9a; padding: 15px; border-radius: 8px;">
+                <h3 style="color: #c62828; margin-top: 0;">❌ No Diagnosis Found</h3>
+                <p>No specific disease matched your symptoms based on our current knowledge base.</p>
+                <p><b>Advice:</b> Please consult a real doctor for a professional assessment.</p>
             </div>
             """
-            self.result_area.insertHtml(html)
-            self.result_area.append("") 
+            self.result_area.insertHtml(no_result_html)
+            return
 
-        final_conclusions = [r.conclusion for r in fired_rules]
-        self.result_area.append(f"\nFinal Inferred States: {', '.join(final_conclusions)}")
+        # 1. Show Detailed Trace (Smaller, less emphasized)
+        self.result_area.append("<h3 style='color: #7f8c8d; border-bottom: 1px solid #ccc; padding-bottom:5px;'>Diagnostic Trace</h3>")
+        
+        new_facts_list = []
+        for rule in fired_rules:
+            new_facts_list.append(rule.conclusion)
+            trace_html = f"""
+            <div style="background-color: #fdfefe; padding: 10px; margin-bottom: 8px; border-left: 4px solid #3498db; font-size: 13px;">
+                <span style="color: #2c3e50;"><b>Rule {rule.rule_id}</b> fired.</span><br>
+                <div style="margin-left: 15px; color: #555;">
+                   &bull; Conditions matched: <i>{', '.join(rule.conditions)}</i><br>
+                   &bull; <b>New Fact Added:</b> <span style="background-color: #d6eaf8; padding: 2px 5px; border-radius: 3px;">{rule.conclusion}</span>
+                </div>
+            </div>
+            """
+            self.result_area.insertHtml(trace_html)
+
+        # New Facts Summary
+        if new_facts_list:
+            facts_html = f"""
+            <div style="margin: 10px 0; padding: 10px; background-color: #fff3cd; border: 1px solid #ffeeba; border-radius: 5px; color: #856404;">
+                <b>🚀 New Facts Discovered:</b> {', '.join(new_facts_list)}
+            </div>
+            """
+            self.result_area.insertHtml(facts_html)
+
+        self.result_area.append("<hr style='border: 1px solid #e0e0e0; margin: 20px 0;'>")
+
+        # 2. Show Final Results (Special, emphasized)
+        # self.result_area.append("<h2 style='color: #2c3e50; text-align: center;'>📋 Final Diagnosis & Reports</h2>")
+        
+        for rule in fired_rules:
+            # We show each conclusion card including the "New Facts/Symptoms" that triggered it
+            card_html = f"""
+            <div style="
+                background-color: white; 
+                border: 2px solid #3498db; 
+                border-radius: 12px; 
+                padding: 20px; 
+                margin: 20px 0;
+                box-shadow: 0 4px 8px rgba(0,0,0,0.1);">
+                
+                <h1 style="color: #2c3e50; margin-top: 0; font-size: 24px; border-bottom: 2px solid #ecf0f1; padding-bottom: 15px;">
+                    📋 Final Diagnosis & Reports <span style="color: #2980b9;">🩺 {rule.conclusion}</span>
+                </h1>
+                
+                <div style="background-color: #e8f6f3; border-left: 5px solid #1abc9c; padding: 15px; border-radius: 0 8px 8px 0; margin-top: 15px;">
+                    <h4 style="color: #16a085; margin: 0 0 8px 0;">💊 Treatment & Advice:</h4>
+                    <p style="font-size: 14px; margin: 0; line-height: 1.5; color: #2c3e50;">{rule.precautions}</p>
+                </div>
+            </div>
+            """
+            self.result_area.insertHtml(card_html)
+            self.result_area.append("")  # Spacing
 
     def run_verification(self):
         selected = self.get_selected_symptoms()
