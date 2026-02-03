@@ -1,4 +1,6 @@
 import json
+import csv
+import os
 
 class Rule:
     def __init__(self, rule_id, conditions, conclusion, precautions):
@@ -11,14 +13,23 @@ class Rule:
         return f"Rule({self.rule_id}: {self.conditions} -> {self.conclusion})"
 
 class ExpertSystem:
-    def __init__(self, json_path):
+    def __init__(self, file_path):
         self.rules = []
         try:
-            self.load_rules(json_path)
+            self.load_rules(file_path)
         except Exception as e:
             print(f"Error loading rules: {e}")
 
-    def load_rules(self, json_path):
+    def load_rules(self, file_path):
+        ext = os.path.splitext(file_path)[1].lower()
+        if ext == '.json':
+            self._load_json(file_path)
+        elif ext == '.csv':
+            self._load_csv(file_path)
+        else:
+            raise ValueError(f"Unsupported file format: {ext}")
+
+    def _load_json(self, json_path):
         with open(json_path, 'r', encoding='utf-8') as f:
             data = json.load(f)
             for item in data:
@@ -27,6 +38,24 @@ class ExpertSystem:
                     item['conditions'],
                     item['conclusion'],
                     item.get('precautions', "Consult a doctor.")
+                ))
+
+    def _load_csv(self, csv_path):
+        with open(csv_path, 'r', encoding='utf-8') as f:
+            reader = csv.DictReader(f)
+            for row in reader:
+                # Handle potential whitespace in CSV keys/values
+                row = {k.strip(): v.strip() for k, v in row.items()}
+                
+                if not row['conditions']:
+                    continue
+                    
+                conditions = [c.strip() for c in row['conditions'].split(';')]
+                self.rules.append(Rule(
+                    row['rule_id'],
+                    conditions,
+                    row['conclusion'],
+                    row['precautions']
                 ))
 
     def get_observable_symptoms(self):

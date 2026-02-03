@@ -117,11 +117,12 @@ class AppStyle:
 class ArtificialDoctorApp(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Artificial Doctor - Expert System")
+        self.setWindowTitle("Expert system 2 (CSV Base)")
         self.resize(1200, 800)
         self.setStyleSheet(AppStyle.STYLESHEET)
         
-        self.system = ExpertSystem('message.json')
+        # CHANGED: Load from CSV instead of JSON
+        self.system = ExpertSystem('knowledge_base_15_rules_forward_chaining_15.csv')
         
         self.init_ui()
         
@@ -138,9 +139,9 @@ class ArtificialDoctorApp(QMainWindow):
         header_frame.setFixedHeight(80)
         header_layout = QHBoxLayout(header_frame)
         
-        title_label = QLabel("Artificial Doctor")
+        title_label = QLabel("Artificial Doctor (Expert 2)")
         title_label.setStyleSheet("color: white; font-size: 24px; font-weight: bold;")
-        subtitle_label = QLabel("Advanced Symptom Analysis System")
+        subtitle_label = QLabel("Advanced Symptom Analysis System (CSV Powered)")
         subtitle_label.setStyleSheet("color: #ecf0f1; font-size: 14px; font-style: italic;")
         
         header_layout.addWidget(title_label)
@@ -165,11 +166,6 @@ class ArtificialDoctorApp(QMainWindow):
 
         symptoms = self.system.get_observable_symptoms()
         
-
-
-
-
-
         row, col = 0, 0
 
         for sym in symptoms:
