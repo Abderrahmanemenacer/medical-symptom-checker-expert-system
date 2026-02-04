@@ -117,11 +117,10 @@ class AppStyle:
 class ArtificialDoctorApp(QMainWindow):
     def __init__(self):
         super().__init__()
-        self.setWindowTitle("Expert system 2 (CSV Base)")
+        self.setWindowTitle("Expert System - Medical Diagnosis")
         self.resize(1200, 800)
         self.setStyleSheet(AppStyle.STYLESHEET)
         
-        # CHANGED: Load from CSV instead of JSON
         self.system = ExpertSystem('knowledge_base_15_rules_forward_chaining_15.csv')
         
         self.init_ui()
